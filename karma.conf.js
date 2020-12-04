@@ -37,7 +37,23 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'HeadlessChrome'],
+    customLaunchers:{
+      HeadlessChrome:{
+        base: 'ChromeHeadless',
+        flags: [
+          '--no-sandbox',
+       //   '--remote-debugging-port=9222',
+       //   '--enable-logging',
+       //   '--user-data-dir=./karma-chrome',
+       //   '--v=1',
+       //   '--disable-background-timer-throttling',
+       //   '--disable-renderer-backgrounding',
+          '--proxy-bypass-list=*',
+          '--proxy-server=\'http://<my org proxy server>:8080\''
+       ]
+      }
+    },
     singleRun: false,
     restartOnFileChange: true
   });

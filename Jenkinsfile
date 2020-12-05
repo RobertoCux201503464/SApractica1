@@ -1,10 +1,10 @@
 node {
     stage('BUILD'){
-        ng build --prod
+        sh "ng build --prod"
     }
 
     stage('DEPLOY'){
-        ng serve
+        sh "ng serve"
     }
 
 

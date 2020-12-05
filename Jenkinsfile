@@ -6,13 +6,13 @@ node {
         sh "npm install"
         sh "ng build --prod"
     }*/
-    stage('TEST'){
+   /* stage('TEST'){
         sh "ng test --code-coverage"
-    }
+    }*/
 
-    stage('DEPLOY'){
+   /* stage('DEPLOY'){
         sh "ng serve"
-    }
+    }*/
 
 
 

@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'practica1';
+
+  sumar=(numero1: number,numero2: number):number=>numero1+numero2;
 }

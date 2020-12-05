@@ -8,6 +8,7 @@ node {
     }
     stage('TEST'){
         sh "ng test"
+        sh "^C"
     }
 
     stage('DEPLOY'){

@@ -6,6 +6,9 @@ node {
         sh "npm install"
         sh "ng build --prod"
     }
+    stage('TEST'){
+        sh "ng test"
+    }
 
     stage('DEPLOY'){
         sh "pm2 restart all"

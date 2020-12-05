@@ -11,7 +11,7 @@ node {
     }
 
     stage('DEPLOY'){
-        sh "pm2 start \"ng serve\" --name prueba"
+        sh "pm2 start \"ng serve\""
         
     }
 

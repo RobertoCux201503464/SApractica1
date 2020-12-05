@@ -6,6 +6,6 @@ describe('AppComponent', () => {
   it('Debe de ser 4', () => {
     let prueba: AppComponent;
     prueba=new AppComponent();
-    expect(prueba.sumar(2,2)).toEqual(4);
+    expect(prueba.sumar(2,2)).toEqual(41);
   });
 });

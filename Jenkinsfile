@@ -2,17 +2,18 @@ node {
     stage('CHECKS'){
         git branch: 'master',url:"https://github.com/RobertoCux201503464/SApractica1.git"
     }
-    /*stage('BUILD'){
+    stage('BUILD'){
         sh "npm install"
         sh "ng build --prod"
-    }*/
-   /* stage('TEST'){
+    }
+    stage('TEST'){
         sh "ng test --code-coverage"
-    }*/
+    }
 
-   /* stage('DEPLOY'){
-        sh "ng serve"
-    }*/
+    stage('DEPLOY'){
+        sh "pm2 start \"ng serve\" --name prueba"
+        
+    }
 
 
 

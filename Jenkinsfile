@@ -11,7 +11,7 @@ node {
     }
 
     stage('DEPLOY'){
-        sh "pm2 restart all"
+        sh "ng serve"
     }
 
 

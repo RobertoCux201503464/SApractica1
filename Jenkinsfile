@@ -9,8 +9,4 @@ node {
         sh "npm install"
         sh "ng build --prod"
     }
-
-
-
-
 }

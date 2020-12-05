@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'practica1Hola';
+  title = 'practica1Roberto';
 
   sumar=(numero1: number,numero2: number):number=>numero1+numero2;
 }

@@ -1,12 +1,10 @@
 node {
     stage('CHECKS'){
         git branch: 'master',url:"https://github.com/RobertoCux201503464/SApractica1.git"
-    }
-    stage('TEST'){
-        sh "ng test --code-coverage"
+        sh 'docker rmi frontend'
+        sh 'docker build -t "frontend" .'
     }
     stage('DEPLOY'){
-        sh "npm install"
-        sh "ng build --prod"
+        sh " sudo docker run -d -p 80:80 --name practica2 frontend "
     }
 }

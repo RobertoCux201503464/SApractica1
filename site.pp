@@ -1,7 +1,7 @@
 include 'docker'
 
 docker::image {'analisis2practica3/practica2cux':
-        image_tag => 'latest'
+        image_tag => 'latest' 
         }
 
 docker::run{'deploy':

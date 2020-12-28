@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   micro-servicio-proxy: 
+    build: .
     image: analisis2practica3/practica
     expose:
       - "80"

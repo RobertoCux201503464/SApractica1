@@ -3,8 +3,8 @@
   vars:
     create_containers: 1
     default_container_name: ejemplo
-    default_container_image: analisis2practica3/practica2cux
-    default_container_command: run -p 80:80
+    default_container_image: analisis2practica3/backendsa
+    default_container_command: run -p 3000:3000
   tasks:
     - name: Install aptitude using apt
       become: yes
@@ -22,20 +22,29 @@
         state: present
 
     - name: Add Docker Repository
-      become: yes                                                                                                                                                             apt_repository:                                                                                                                                                           repo: deb https://download.docker.com/linux/ubuntu bionic stable                                                                                                        state: present
+      become: yes
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
 
     - name: Update apt and install docker-ce
       become: yes
       apt: update_cache=yes name=docker-ce state=latest
 
-    - name: Execute Docker Compose
+#install docker-compose
+    - name: Install docker-compose
       become: yes
-      shell: sudo docker rmi analisis2practica3/practica2cux
+      shell: curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+      ignore_errors: yes
 
-    - name: Execute Docker Compose
-      become: yes
-      shell: sudo docker pull analisis2practica3/practica2cux
+    - name: Clone repo
+      git:
+        repo: https://github.com/RobertoCux201503464/SApractica1.git
+        dest: /home/roberto/backend
 
+
+  
+#Execute Docker Compose
     - name: Execute Docker Compose
       become: yes
-      shell: sudo docker run -p 80:80 analisis2practica3/practica2cux
+      shell: docker-compose -f /home/roberto/backend/docker-compose.yml up --build -d

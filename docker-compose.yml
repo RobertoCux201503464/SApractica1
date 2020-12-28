@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  micro-servicio-proxy: 
+    image: analisis2practica3/practica
+    expose:
+      - "80"
+    ports: 
+      - "80:80"
+    networks:
+      - backend-network
+      
+
+
+networks:
+  backend-network:
+    name: backend-network

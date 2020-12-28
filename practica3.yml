@@ -1,0 +1,41 @@
+- hosts: webserver
+  user: roberto
+  vars:
+    create_containers: 1
+    default_container_name: ejemplo
+    default_container_image: analisis2practica3/practica2cux
+    default_container_command: run -p 80:80
+  tasks:
+    - name: Install aptitude using apt
+      become: yes
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Install required system packages
+      become: yes
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+    - name: Add Docker GPG apt Key
+      become: yes
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      become: yes                                                                                                                                                             apt_repository:                                                                                                                                                           repo: deb https://download.docker.com/linux/ubuntu bionic stable                                                                                                        state: present
+
+    - name: Update apt and install docker-ce
+      become: yes
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Execute Docker Compose
+      become: yes
+      shell: sudo docker rmi analisis2practica3/practica2cux
+
+    - name: Execute Docker Compose
+      become: yes
+      shell: sudo docker pull analisis2practica3/practica2cux
+
+    - name: Execute Docker Compose
+      become: yes
+      shell: sudo docker run -p 80:80 analisis2practica3/practica2cux
